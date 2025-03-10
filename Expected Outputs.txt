@@ -1,0 +1,713 @@
+. cd "Demo datasets on Github"
+. use "MEC_data_demo.dta", replace
+
+. probit diabe male malay indian eth_other l2age logdeltaage mdivorce_sep mwidowed msingle edulowmidhigh l2logbmi l2income20
+> 00_3999 l2income4000_5999 l2income6000u l2smoken l2smokev l2hibpe if l2diabe==0
+
+note: eth_other != 0 predicts failure perfectly
+      eth_other dropped and 2 obs not used
+
+Iteration 0:   log likelihood = -207.68121  
+Iteration 1:   log likelihood = -172.43628  
+Iteration 2:   log likelihood =  -169.9094  
+Iteration 3:   log likelihood =  -169.8991  
+Iteration 4:   log likelihood =  -169.8991  
+
+Probit regression                               Number of obs     =        763
+                                                LR chi2(16)       =      75.56
+                                                Prob > chi2       =     0.0000
+Log likelihood =  -169.8991                     Pseudo R2         =     0.1819
+
+-----------------------------------------------------------------------------------
+            diabe |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+             male |   .1311977   .1911411     0.69   0.492     -.243432    .5058275
+            malay |   .3987773    .210197     1.90   0.058    -.0132011    .8107558
+           indian |   .7821641    .196764     3.98   0.000     .3965138    1.167814
+        eth_other |          0  (omitted)
+            l2age |   .0068365   .0108912     0.63   0.530    -.0145098    .0281828
+      logdeltaage |   .9193086   .2990903     3.07   0.002     .3331024    1.505515
+     mdivorce_sep |   .6455664   .3299293     1.96   0.050    -.0010831    1.292216
+         mwidowed |   .2369342   .2928555     0.81   0.418    -.3370521    .8109205
+          msingle |   .4467671   .2812193     1.59   0.112    -.1044126    .9979468
+    edulowmidhigh |   .2508547   .3021622     0.83   0.406    -.3413724    .8430817
+         l2logbmi |   1.791241   .4729727     3.79   0.000     .8642314     2.71825
+l2income2000_3999 |  -.1473367   .1783676    -0.83   0.409    -.4969307    .2022573
+l2income4000_5999 |  -.5153323   .2865077    -1.80   0.072    -1.076877    .0462124
+    l2income6000u |  -.0151318   .2551372    -0.06   0.953    -.5151915     .484928
+         l2smoken |   .2372491   .2417858     0.98   0.326    -.2366423    .7111405
+         l2smokev |   .3421953   .2552719     1.34   0.180    -.1581284    .8425191
+          l2hibpe |   .2551412   .1934897     1.32   0.187    -.1240917    .6343741
+            _cons |   -10.0744   1.841728    -5.47   0.000    -13.68412   -6.464682
+-----------------------------------------------------------------------------------
+
+. 
+. probit hibpe male malay indian eth_other l2age logdeltaage mdivorce_sep mwidowed msingle eduLowEdu eduMidHighEdu l2logbmi 
+> l2income2000_3999 l2income4000_5999 l2income6000u l2smoken l2smokev l2diabe if l2hibpe==0
+
+note: eth_other omitted because of collinearity
+Iteration 0:   log likelihood =  -337.7019  
+Iteration 1:   log likelihood = -312.42195  
+Iteration 2:   log likelihood = -312.13883  
+Iteration 3:   log likelihood = -312.13881  
+
+Probit regression                               Number of obs     =        681
+                                                LR chi2(17)       =      51.13
+                                                Prob > chi2       =     0.0000
+Log likelihood = -312.13881                     Pseudo R2         =     0.0757
+
+-----------------------------------------------------------------------------------
+            hibpe |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+             male |   .2780413   .1417246     1.96   0.050     .0002663    .5558163
+            malay |   .1857795   .1528498     1.22   0.224    -.1138006    .4853597
+           indian |   .1235642   .1492864     0.83   0.408    -.1690318    .4161601
+        eth_other |          0  (omitted)
+            l2age |   .0108029    .007998     1.35   0.177    -.0048729    .0264786
+      logdeltaage |   .7346427   .2245318     3.27   0.001     .2945685    1.174717
+     mdivorce_sep |  -.2829843   .3520034    -0.80   0.421    -.9728982    .4069296
+         mwidowed |   .4230768   .2447404     1.73   0.084    -.0566056    .9027592
+          msingle |     .31446   .2356396     1.33   0.182    -.1473852    .7763052
+        eduLowEdu |  -.2764395   .2459843    -1.12   0.261    -.7585598    .2056808
+    eduMidHighEdu |  -.3341148   .2417051    -1.38   0.167    -.8078481    .1396185
+         l2logbmi |   1.232495   .3640164     3.39   0.001     .5190361    1.945954
+l2income2000_3999 |   .1462058   .1444069     1.01   0.311    -.1368266    .4292382
+l2income4000_5999 |  -.0483864   .1956784    -0.25   0.805    -.4319091    .3351363
+    l2income6000u |   .0415787   .2160665     0.19   0.847    -.3819038    .4650612
+         l2smoken |  -.0160282   .1907974    -0.08   0.933    -.3899842    .3579277
+         l2smokev |   .0298443   .2314022     0.13   0.897    -.4236957    .4833844
+          l2diabe |   .2289556    .206972     1.11   0.269    -.1767021    .6346134
+            _cons |  -6.749607   1.376393    -4.90   0.000    -9.447287   -4.051926
+-----------------------------------------------------------------------------------
+
+. 
+. probit stroke male malay indian eth_other l2age logdeltaage mdivorce_sep mwidowed msingle eduMidHighEdu l2bmi230_275_cat l
+> 2bmi275u_cat l2smoken l2smokev l2hibpe if l2stroke==0
+
+note: eth_other != 0 predicts failure perfectly
+      eth_other dropped and 2 obs not used
+
+note: mdivorce_sep != 0 predicts failure perfectly
+      mdivorce_sep dropped and 32 obs not used
+
+Iteration 0:   log likelihood = -40.574645  
+Iteration 1:   log likelihood = -33.641991  
+Iteration 2:   log likelihood = -31.743233  
+Iteration 3:   log likelihood = -31.485174  
+Iteration 4:   log likelihood = -31.440982  
+Iteration 5:   log likelihood = -31.433319  
+Iteration 6:   log likelihood = -31.431772  
+Iteration 7:   log likelihood = -31.431447  
+Iteration 8:   log likelihood = -31.431377  
+Iteration 9:   log likelihood = -31.431364  
+Iteration 10:  log likelihood = -31.431363  
+
+Probit regression                               Number of obs     =        851
+                                                LR chi2(13)       =      18.29
+                                                Prob > chi2       =     0.1469
+Log likelihood = -31.431363                     Pseudo R2         =     0.2253
+
+----------------------------------------------------------------------------------
+          stroke |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-----------------+----------------------------------------------------------------
+            male |  -.0608069   .4774037    -0.13   0.899     -.996501    .8748873
+           malay |  -.2756479   .4808544    -0.57   0.566    -1.218105    .6668095
+          indian |    .111247   .3896563     0.29   0.775    -.6524653    .8749594
+       eth_other |          0  (omitted)
+           l2age |   .0084487   .0198905     0.42   0.671    -.0305361    .0474334
+     logdeltaage |   .7325849   .7267044     1.01   0.313    -.6917296    2.156899
+    mdivorce_sep |          0  (omitted)
+        mwidowed |   .1196973   .5747206     0.21   0.835    -1.006735    1.246129
+         msingle |   .5768982   .5687713     1.01   0.310    -.5378731    1.691669
+   eduMidHighEdu |  -.3852192   .3561426    -1.08   0.279    -1.083246    .3128074
+l2bmi230_275_cat |   4.050174   285.9175     0.01   0.989    -556.3378    564.4382
+   l2bmi275u_cat |   3.839605   285.9176     0.01   0.989    -556.5486    564.2278
+        l2smoken |   .3892568   .5764002     0.68   0.499    -.7404668     1.51898
+        l2smokev |   .9877262   .4715629     2.09   0.036       .06348    1.911972
+         l2hibpe |   .2808604   .3660659     0.77   0.443    -.4366156    .9983364
+           _cons |  -8.254504   285.9236    -0.03   0.977    -568.6545    552.1455
+----------------------------------------------------------------------------------
+Note: 276 failures and 0 successes completely determined.
+
+. 
+. probit hearte male malay indian eth_other l2age logdeltaage mdivorce_sep mwidowed msingle eduLowEdu eduMidHighEdu l2logbmi
+>  l2income2000_3999 l2income4000_5999 l2income6000u l2smoken l2smokev l2diabe l2hibpe l2highchole if l2hearte==0
+
+note: eth_other != 0 predicts success perfectly
+      eth_other dropped and 1 obs not used
+
+Iteration 0:   log likelihood = -133.73806  
+Iteration 1:   log likelihood = -104.37967  
+Iteration 2:   log likelihood = -99.663812  
+Iteration 3:   log likelihood = -99.575552  
+Iteration 4:   log likelihood = -99.575455  
+Iteration 5:   log likelihood = -99.575455  
+
+Probit regression                               Number of obs     =        868
+                                                LR chi2(19)       =      68.33
+                                                Prob > chi2       =     0.0000
+Log likelihood = -99.575455                     Pseudo R2         =     0.2554
+
+-----------------------------------------------------------------------------------
+           hearte |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+             male |   .2717585   .2627602     1.03   0.301    -.2432421     .786759
+            malay |   .1052923   .2656392     0.40   0.692     -.415351    .6259356
+           indian |  -.0284012   .2675536    -0.11   0.915    -.5527967    .4959943
+        eth_other |          0  (omitted)
+            l2age |   .0303857   .0123972     2.45   0.014     .0060876    .0546838
+      logdeltaage |   .4684142   .4364479     1.07   0.283    -.3870079    1.323836
+     mdivorce_sep |  -.7644253   .7241335    -1.06   0.291    -2.183701    .6548503
+         mwidowed |  -.0096533   .3799948    -0.03   0.980    -.7544295    .7351229
+          msingle |   .2812365   .4308401     0.65   0.514    -.5631946    1.125668
+        eduLowEdu |   .1379647   .3460174     0.40   0.690     -.540217    .8161464
+    eduMidHighEdu |   .1783934   .3431869     0.52   0.603    -.4942406    .8510274
+         l2logbmi |   .6901458   .6333578     1.09   0.276    -.5512127    1.931504
+l2income2000_3999 |  -.4735413   .2536557    -1.87   0.062    -.9706974    .0236148
+l2income4000_5999 |    .357536   .3054609     1.17   0.242    -.2411563    .9562284
+    l2income6000u |   .3752799   .3294367     1.14   0.255    -.2704041    1.020964
+         l2smoken |   1.193999   .2902504     4.11   0.000     .6251185    1.762879
+         l2smokev |   .1527726   .3432785     0.45   0.656    -.5200408     .825586
+          l2diabe |   .6179094   .2467886     2.50   0.012     .1342126    1.101606
+          l2hibpe |   .6036567   .2473973     2.44   0.015     .1187668    1.088547
+      l2highchole |    .146591   .2364006     0.62   0.535    -.3167457    .6099277
+            _cons |   -7.51503   2.489656    -3.02   0.003    -12.39467   -2.635395
+-----------------------------------------------------------------------------------
+
+. 
+. regress logbmi male malay indian eth_other l2age logdeltaage mdivorce_sep mwidowed msingle eduLowEdu eduMidHighEdu l2logbm
+> i l2income2000_3999 l2income4000_5999 l2income6000u l2smoken l2smokev  l2diabe l2hibpe l2highchole l2stroke
+
+      Source |       SS           df       MS      Number of obs   =       887
+-------------+----------------------------------   F(21, 865)      =    249.60
+       Model |  24.0817574        21  1.14675035   Prob > F        =    0.0000
+    Residual |  3.97404039       865  .004594266   R-squared       =    0.8584
+-------------+----------------------------------   Adj R-squared   =    0.8549
+       Total |  28.0557978       886  .031665686   Root MSE        =    .06778
+
+-----------------------------------------------------------------------------------
+           logbmi |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+             male |  -.0018949   .0056025    -0.34   0.735    -.0128911    .0091012
+            malay |   .0230579   .0061596     3.74   0.000     .0109685    .0351473
+           indian |    .010015    .006013     1.67   0.096    -.0017867    .0218167
+        eth_other |   .0279154   .0489176     0.57   0.568    -.0680957    .1239265
+            l2age |  -.0014155   .0003151    -4.49   0.000     -.002034   -.0007969
+      logdeltaage |   .0198597   .0086432     2.30   0.022     .0028955    .0368238
+     mdivorce_sep |  -.0335593   .0123956    -2.71   0.007    -.0578883   -.0092304
+         mwidowed |  -.0028131   .0094993    -0.30   0.767    -.0214574    .0158313
+          msingle |  -.0079696    .010045    -0.79   0.428     -.027685    .0117458
+        eduLowEdu |  -.0024984   .0092833    -0.27   0.788    -.0207188     .015722
+    eduMidHighEdu |  -.0013867   .0090589    -0.15   0.878    -.0191667    .0163932
+         l2logbmi |   .9020524   .0143867    62.70   0.000     .8738155    .9302892
+l2income2000_3999 |  -.0042026   .0057361    -0.73   0.464    -.0154609    .0070556
+l2income4000_5999 |  -.0095079   .0078747    -1.21   0.228    -.0249635    .0059478
+    l2income6000u |  -.0051103   .0085137    -0.60   0.549    -.0218203    .0115997
+         l2smoken |  -.0148676   .0082085    -1.81   0.070    -.0309785    .0012433
+         l2smokev |   .0021093   .0088412     0.24   0.811    -.0152434     .019462
+          l2diabe |  -.0207226   .0074449    -2.78   0.005    -.0353348   -.0061105
+          l2hibpe |   .0035874   .0064156     0.56   0.576    -.0090046    .0161794
+      l2highchole |  -.0050542   .0055366    -0.91   0.362     -.015921    .0058125
+         l2stroke |  -.0907479   .0488884    -1.86   0.064    -.1867017     .005206
+            _cons |   .3816632   .0533981     7.15   0.000     .2768583    .4864681
+-----------------------------------------------------------------------------------
+
+. 
+. probit died male malay indian eth_other  l2age65l l2age6575 l2age75p  mdivorce_sep mwidowed msingle eduLowEdu eduMidHighEd
+> u l2bmi185l_cat  l2bmi230u_cat  l2income2000_3999 l2income4000_5999 l2income6000u l2smoken  l2diabe l2cancre l2stroke if l
+> 2died==0
+
+note: eth_other != 0 predicts failure perfectly
+      eth_other dropped and 2 obs not used
+
+note: msingle != 0 predicts failure perfectly
+      msingle dropped and 51 obs not used
+
+Iteration 0:   log likelihood =  -213.1351  
+Iteration 1:   log likelihood = -147.14768  
+Iteration 2:   log likelihood = -141.83736  
+Iteration 3:   log likelihood = -141.46244  
+Iteration 4:   log likelihood = -141.43803  
+Iteration 5:   log likelihood = -141.43769  
+Iteration 6:   log likelihood = -141.43769  
+
+Probit regression                               Number of obs     =        834
+                                                LR chi2(19)       =     143.39
+                                                Prob > chi2       =     0.0000
+Log likelihood = -141.43769                     Pseudo R2         =     0.3364
+
+-----------------------------------------------------------------------------------
+             died |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+             male |   .1290757   .1909952     0.68   0.499     -.245268    .5034195
+            malay |   .3088678   .2041998     1.51   0.130    -.0913565     .709092
+           indian |   .0319436   .2197578     0.15   0.884    -.3987738    .4626611
+        eth_other |          0  (omitted)
+         l2age65l |   .0403709   .0130569     3.09   0.002     .0147799    .0659619
+        l2age6575 |   .1388948   .0439905     3.16   0.002     .0526749    .2251146
+         l2age75p |   .5045989   .3699476     1.36   0.173     -.220485    1.229683
+     mdivorce_sep |  -.5274292   .4863979    -1.08   0.278    -1.480752    .4258932
+         mwidowed |    -1.4233   .5010616    -2.84   0.005    -2.405362   -.4412369
+          msingle |          0  (omitted)
+        eduLowEdu |  -.1997482   .2730616    -0.73   0.464    -.7349392    .3354428
+    eduMidHighEdu |  -.2634986   .2683149    -0.98   0.326    -.7893861    .2623888
+    l2bmi185l_cat |  -1.271706   1.871453    -0.68   0.497    -4.939687    2.396274
+    l2bmi230u_cat |   .2286181   .1958686     1.17   0.243    -.1552772    .6125134
+l2income2000_3999 |  -.0446009   .1825752    -0.24   0.807    -.4024418      .31324
+l2income4000_5999 |   -.867562   .4512153    -1.92   0.055    -1.751928    .0168037
+    l2income6000u |  -.1860634   .3337508    -0.56   0.577    -.8402029    .4680762
+         l2smoken |   .4298221   .2371675     1.81   0.070    -.0350176    .8946619
+          l2diabe |   .2561729   .2039038     1.26   0.209    -.1434713    .6558171
+         l2cancre |    1.65932    1.06077     1.56   0.118    -.4197506     3.73839
+         l2stroke |   1.146248   1.068201     1.07   0.283    -.9473888    3.239884
+            _cons |  -3.881528   .8071102    -4.81   0.000    -5.463435   -2.299621
+-----------------------------------------------------------------------------------
+
+. 
+. oprobit income4lv male malay indian eth_other l2age logdeltaage mdivorce_sep mwidowed msingle edulowmidhigh l2logbmi l2inc
+> ome2000_3999 l2income4000_5999 l2income6000u l2smoken l2smokev l2working 
+
+Iteration 0:   log likelihood = -1119.6002  
+Iteration 1:   log likelihood = -973.81789  
+Iteration 2:   log likelihood = -973.18034  
+Iteration 3:   log likelihood = -973.18023  
+Iteration 4:   log likelihood = -973.18023  
+
+Ordered probit regression                       Number of obs     =        887
+                                                LR chi2(17)       =     292.84
+                                                Prob > chi2       =     0.0000
+Log likelihood = -973.18023                     Pseudo R2         =     0.1308
+
+-----------------------------------------------------------------------------------
+        income4lv |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+             male |   .1476943   .0975353     1.51   0.130    -.0434714      .33886
+            malay |  -.1388169   .1008798    -1.38   0.169    -.3365376    .0589039
+           indian |   -.288008   .0973147    -2.96   0.003    -.4787412   -.0972748
+        eth_other |   1.269654   .8705661     1.46   0.145    -.4366242    2.975932
+            l2age |   -.033542    .005307    -6.32   0.000    -.0439435   -.0231405
+      logdeltaage |  -.0071124   .1412162    -0.05   0.960    -.2838911    .2696662
+     mdivorce_sep |  -.7454516   .2184001    -3.41   0.001    -1.173508   -.3173953
+         mwidowed |  -.1792957   .1562161    -1.15   0.251    -.4854735    .1268822
+          msingle |  -.6626274   .1696815    -3.91   0.000    -.9951971   -.3300578
+    edulowmidhigh |   -.217275   .1425834    -1.52   0.128    -.4967332    .0621833
+         l2logbmi |  -.1633398   .2278806    -0.72   0.474    -.6099776    .2832981
+l2income2000_3999 |   .6731337   .0958155     7.03   0.000     .4853388    .8609286
+l2income4000_5999 |   1.062354   .1293208     8.21   0.000     .8088902    1.315818
+    l2income6000u |   1.642305   .1456124    11.28   0.000      1.35691      1.9277
+         l2smoken |  -.2084164   .1351538    -1.54   0.123     -.473313    .0564801
+         l2smokev |  -.1799136   .1441342    -1.25   0.212    -.4624113    .1025842
+        l2working |   .0543616   .0924865     0.59   0.557    -.1269086    .2356318
+------------------+----------------------------------------------------------------
+            /cut1 |  -2.899106   .8516669                     -4.568343    -1.22987
+            /cut2 |  -1.355609   .8477514                     -3.017171    .3059535
+            /cut3 |  -.7272508   .8481645                     -2.389623    .9351211
+-----------------------------------------------------------------------------------
+
+. 
+. oprobit smkstat male malay indian eth_other l2age logdeltaage mdivorce_sep mwidowed msingle eduLowEdu eduMidHighEdu l2logb
+> mi l2income2000_3999 l2income4000_5999 l2income6000u l2smoken l2smokev
+
+Iteration 0:   log likelihood = -593.16362  
+Iteration 1:   log likelihood = -250.35027  
+Iteration 2:   log likelihood =  -223.3222  
+Iteration 3:   log likelihood = -221.43518  
+Iteration 4:   log likelihood = -221.42848  
+Iteration 5:   log likelihood = -221.42848  
+
+Ordered probit regression                       Number of obs     =        837
+                                                LR chi2(17)       =     743.47
+                                                Prob > chi2       =     0.0000
+Log likelihood = -221.42848                     Pseudo R2         =     0.6267
+
+-----------------------------------------------------------------------------------
+          smkstat |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+             male |   1.110514   .1796281     6.18   0.000     .7584496    1.462579
+            malay |   .1986939   .1699947     1.17   0.242    -.1344896    .5318774
+           indian |  -.3047669   .1854282    -1.64   0.100    -.6681995    .0586657
+        eth_other |  -1.965764   1.228602    -1.60   0.110    -4.373779    .4422513
+            l2age |   .0043568   .0091203     0.48   0.633    -.0135186    .0222323
+      logdeltaage |   .1784325   .2508456     0.71   0.477    -.3132159    .6700809
+     mdivorce_sep |    .582445   .3404617     1.71   0.087    -.0848477    1.249738
+         mwidowed |  -.2876622   .4416276    -0.65   0.515    -1.153236     .577912
+          msingle |   .0678739   .3108377     0.22   0.827    -.5413568    .6771046
+        eduLowEdu |   .2194529   .3467676     0.63   0.527     -.460199    .8991049
+    eduMidHighEdu |   .1543728    .339278     0.46   0.649    -.5105999    .8193454
+         l2logbmi |   -.270617   .4268848    -0.63   0.526    -1.107296    .5660618
+l2income2000_3999 |  -.1342164   .1736389    -0.77   0.440    -.4745425    .2061096
+l2income4000_5999 |   .1076331   .2224609     0.48   0.629    -.3283823    .5436484
+    l2income6000u |   .0926745   .2434848     0.38   0.703    -.3845469    .5698959
+         l2smoken |   4.174665   .2618878    15.94   0.000     3.661374    4.687956
+         l2smokev |   2.378323   .2006788    11.85   0.000        1.985    2.771646
+------------------+----------------------------------------------------------------
+            /cut1 |   1.954367   1.594993                     -1.171761    5.080495
+            /cut2 |   4.024105   1.597247                      .8935582    7.154651
+-----------------------------------------------------------------------------------
+
+. 
+. probit working male malay indian eth_other l2age logdeltaage mdivorce_sep mwidowed msingle eduLowEdu eduMidHighEdu l2logbm
+> i l2smoken l2smokev l2hearte 
+
+note: eth_other != 0 predicts success perfectly
+      eth_other dropped and 2 obs not used
+
+Iteration 0:   log likelihood = -579.07581  
+Iteration 1:   log likelihood = -462.40487  
+Iteration 2:   log likelihood =  -461.1752  
+Iteration 3:   log likelihood = -461.17235  
+Iteration 4:   log likelihood = -461.17234  
+
+Probit regression                               Number of obs     =        885
+                                                LR chi2(14)       =     235.81
+                                                Prob > chi2       =     0.0000
+Log likelihood = -461.17234                     Pseudo R2         =     0.2036
+
+-------------------------------------------------------------------------------
+      working |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+         male |   1.029049    .129982     7.92   0.000      .774289    1.283809
+        malay |  -.3505886   .1258605    -2.79   0.005    -.5972706   -.1039066
+       indian |   .0532547   .1237706     0.43   0.667    -.1893312    .2958406
+    eth_other |          0  (omitted)
+        l2age |  -.0672315    .006551   -10.26   0.000    -.0800712   -.0543918
+  logdeltaage |  -.3321743   .1858606    -1.79   0.074    -.6964544    .0321058
+ mdivorce_sep |  -.0400536   .2429937    -0.16   0.869    -.5163125    .4362053
+     mwidowed |   .0929259   .1893976     0.49   0.624    -.2782866    .4641383
+      msingle |   -.282998   .1989512    -1.42   0.155    -.6729351    .1069392
+    eduLowEdu |  -.0980696   .1851466    -0.53   0.596    -.4609502    .2648111
+eduMidHighEdu |    .046107   .1782861     0.26   0.796    -.3033273    .3955413
+     l2logbmi |  -.3986103   .2920383    -1.36   0.172    -.9709947    .1737742
+     l2smoken |  -.0973121   .1871435    -0.52   0.603    -.4641066    .2694824
+     l2smokev |  -.1762954   .1934021    -0.91   0.362    -.5553566    .2027658
+     l2hearte |  -.4783624   .3309588    -1.45   0.148     -1.12703    .1703048
+        _cons |   5.482162   1.074839     5.10   0.000     3.375516    7.588808
+-------------------------------------------------------------------------------
+
+. 
+. probit highchole male malay indian eth_other l2age logdeltaage mdivorce_sep mwidowed msingle eduLowEdu eduMidHighEdu l2log
+> bmi l2income2000_3999 l2income4000_5999 l2income6000u l2smoken l2smokev l2diabe l2hibpe if l2highchole==0
+
+note: eth_other != 0 predicts success perfectly
+      eth_other dropped and 1 obs not used
+
+Iteration 0:   log likelihood = -339.89039  
+Iteration 1:   log likelihood = -320.78131  
+Iteration 2:   log likelihood = -320.71918  
+Iteration 3:   log likelihood = -320.71917  
+
+Probit regression                               Number of obs     =        569
+                                                LR chi2(18)       =      38.34
+                                                Prob > chi2       =     0.0035
+Log likelihood = -320.71917                     Pseudo R2         =     0.0564
+
+-----------------------------------------------------------------------------------
+        highchole |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+             male |   .0410551   .1411847     0.29   0.771    -.2356618     .317772
+            malay |   .0643004   .1516177     0.42   0.671    -.2328649    .3614657
+           indian |  -.0161735   .1542059    -0.10   0.916    -.3184116    .2860646
+        eth_other |          0  (omitted)
+            l2age |   .0076411   .0089817     0.85   0.395    -.0099628     .025245
+      logdeltaage |   .1594133   .2028515     0.79   0.432    -.2381684    .5569949
+     mdivorce_sep |  -.2350553   .3404426    -0.69   0.490    -.9023104    .4321999
+         mwidowed |  -.1608529   .2550305    -0.63   0.528    -.6607035    .3389977
+          msingle |   .4672187   .2304669     2.03   0.043     .0155118    .9189255
+        eduLowEdu |   .2324681   .2958132     0.79   0.432     -.347315    .8122513
+    eduMidHighEdu |   .1592633   .2921119     0.55   0.586    -.4132655    .7317921
+         l2logbmi |   .4685075    .346117     1.35   0.176    -.2098694    1.146884
+l2income2000_3999 |  -.2517433   .1471914    -1.71   0.087    -.5402332    .0367465
+l2income4000_5999 |    .092682   .1818673     0.51   0.610    -.2637715    .4491354
+    l2income6000u |  -.2105364   .2111043    -1.00   0.319    -.6242932    .2032203
+         l2smoken |   .0715906   .1944204     0.37   0.713    -.3094662    .4526475
+         l2smokev |  -.1081795    .241088    -0.45   0.654    -.5807033    .3643443
+          l2diabe |   .7420725   .2370363     3.13   0.002     .2774898    1.206655
+          l2hibpe |   .4294983   .1781816     2.41   0.016     .0802688    .7787278
+            _cons |  -2.951871   1.315549    -2.24   0.025    -5.530298   -.3734429
+-----------------------------------------------------------------------------------
+
+. 
+. 
+. use "SLAS_demo.dta", replace
+
+. 
+. probit anyadl male malay indian l2age75l l2age7585 l2age85p  mdivorce_sep mwidowed msingle eduMidHighEdu l2bmi185l l2bmi18
+> 5_230 l2bmi230_275 l2bmi275u smokev smoken l2diabe l2stroke l2hearte
+
+note: mdivorce_sep != 0 predicts failure perfectly
+      mdivorce_sep dropped and 15 obs not used
+
+Iteration 0:   log likelihood =  -92.85377  
+Iteration 1:   log likelihood = -64.743347  
+Iteration 2:   log likelihood = -61.976661  
+Iteration 3:   log likelihood = -61.912504  
+Iteration 4:   log likelihood = -61.912485  
+Iteration 5:   log likelihood = -61.912485  
+
+Probit regression                               Number of obs     =        562
+                                                LR chi2(18)       =      61.88
+                                                Prob > chi2       =     0.0000
+Log likelihood = -61.912485                     Pseudo R2         =     0.3332
+
+-------------------------------------------------------------------------------
+       anyadl |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+         male |  -.0472499   .3302836    -0.14   0.886    -.6945938     .600094
+        malay |  -.2952622   .7945602    -0.37   0.710    -1.852572    1.262047
+       indian |   .7598522   .4541045     1.67   0.094    -.1301764    1.649881
+     l2age75l |  -.0067585    .027209    -0.25   0.804    -.0600871    .0465701
+    l2age7585 |   .0851255   .0598927     1.42   0.155    -.0322621    .2025131
+     l2age85p |   .1265035   .1300338     0.97   0.331     -.128358     .381365
+ mdivorce_sep |          0  (omitted)
+     mwidowed |    .277287   .3317073     0.84   0.403    -.3728474    .9274214
+      msingle |    .232896    .483119     0.48   0.630    -.7139999    1.179792
+eduMidHighEdu |   -.707439    .336365    -2.10   0.035    -1.366702   -.0481756
+    l2bmi185l |  -.1772232   .2122976    -0.83   0.404    -.5933188    .2388724
+ l2bmi185_230 |  -.0945243    .113847    -0.83   0.406    -.3176604    .1286117
+ l2bmi230_275 |   .0046364   .1076456     0.04   0.966    -.2063452    .2156179
+    l2bmi275u |   .0828835   .0744542     1.11   0.266    -.0630441     .228811
+       smokev |   .2228852   .3558569     0.63   0.531    -.4745814    .9203518
+       smoken |   .3780664   .5085912     0.74   0.457    -.6187539    1.374887
+      l2diabe |   .5912294   .2996317     1.97   0.048     .0039621    1.178497
+     l2stroke |   1.948022   .3913612     4.98   0.000     1.180968    2.715076
+     l2hearte |   .5752794   .4556277     1.26   0.207    -.3177344    1.468293
+        _cons |   1.710859   4.179219     0.41   0.682     -6.48026    9.901978
+-------------------------------------------------------------------------------
+
+. 
+. probit anyiadl male malay indian l2age75l l2age7585 l2age85p  mdivorce_sep mwidowed msingle eduLowEdu eduMidHighEdu smokev
+>  l2stroke
+
+Iteration 0:   log likelihood = -328.19399  
+Iteration 1:   log likelihood = -251.46406  
+Iteration 2:   log likelihood = -248.42695  
+Iteration 3:   log likelihood = -248.41624  
+Iteration 4:   log likelihood = -248.41624  
+
+Probit regression                               Number of obs     =        804
+                                                LR chi2(13)       =     159.56
+                                                Prob > chi2       =     0.0000
+Log likelihood = -248.41624                     Pseudo R2         =     0.2431
+
+-------------------------------------------------------------------------------
+      anyiadl |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+         male |   .8676654   .1562856     5.55   0.000     .5613511     1.17398
+        malay |   .2984598    .422498     0.71   0.480    -.5296209    1.126541
+       indian |   .5974277   .3605692     1.66   0.098     -.109275     1.30413
+     l2age75l |   .0490448   .0138204     3.55   0.000     .0219573    .0761323
+    l2age7585 |   .0486115    .029837     1.63   0.103    -.0098679    .1070908
+     l2age85p |   .1553775   .0894847     1.74   0.083    -.0200093    .3307643
+ mdivorce_sep |   .9320275   .3679236     2.53   0.011     .2109105    1.653145
+     mwidowed |  -.0053632   .1929872    -0.03   0.978    -.3836112    .3728847
+      msingle |   .6518755   .2402666     2.71   0.007     .1809616     1.12279
+    eduLowEdu |  -.4414248   .1713042    -2.58   0.010    -.7771749   -.1056748
+eduMidHighEdu |  -.5677352   .1924301    -2.95   0.003    -.9448913   -.1905791
+       smokev |   .4116891   .1677098     2.45   0.014      .082984    .7403942
+     l2stroke |   .8375439   .2701137     3.10   0.002     .3081308    1.366957
+        _cons |  -4.705538   .9487123    -4.96   0.000     -6.56498   -2.846096
+-------------------------------------------------------------------------------
+
+. 
+. use "WiSE_demo.dta", replace
+
+. 
+. 
+. probit totalhccost female age malay indian eth_other msingle mdiv_sep_wid eduLowEdu eduMidEdu eduHighEdu diabe hearte stro
+> ke hibpe
+
+Iteration 0:   log likelihood = -281.22992  
+Iteration 1:   log likelihood = -267.77093  
+Iteration 2:   log likelihood = -267.66056  
+Iteration 3:   log likelihood = -267.66053  
+Iteration 4:   log likelihood = -267.66053  
+
+Probit regression                               Number of obs     =        486
+                                                LR chi2(14)       =      27.14
+                                                Prob > chi2       =     0.0185
+Log likelihood = -267.66053                     Pseudo R2         =     0.0483
+
+------------------------------------------------------------------------------
+ totalhccost |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      female |   .3326318   .1482277     2.24   0.025     .0421108    .6231529
+         age |   .0035391   .0075942     0.47   0.641    -.0113453    .0184235
+       malay |  -.2459178   .1556688    -1.58   0.114    -.5510231    .0591874
+      indian |  -.0600934   .1599516    -0.38   0.707    -.3735928    .2534061
+   eth_other |   .5361961     .58422     0.92   0.359    -.6088541    1.681246
+     msingle |  -.0954921   .3614625    -0.26   0.792    -.8039456    .6129615
+mdiv_sep_wid |  -.2472993   .1565434    -1.58   0.114    -.5541188    .0595201
+   eduLowEdu |    .229907   .1760549     1.31   0.192    -.1151543    .5749683
+   eduMidEdu |   .3202292   .2183162     1.47   0.142    -.1076627    .7481212
+  eduHighEdu |   .2940903   .2849916     1.03   0.302    -.2644829    .8526636
+       diabe |    .517523   .1537971     3.36   0.001     .2160863    .8189598
+      hearte |   .1392425   .1833525     0.76   0.448    -.2201217    .4986067
+      stroke |   .3802659   .2908286     1.31   0.191    -.1897478    .9502795
+       hibpe |  -.0307143   .1554485    -0.20   0.843    -.3353877    .2739591
+       _cons |   .0148292   .6437356     0.02   0.982    -1.246869    1.276528
+------------------------------------------------------------------------------
+
+. 
+. glm totalhccost female age malay indian eth_other msingle mdiv_sep_wid eduLowEdu eduMidEdu eduHighEdu diabe hearte stroke 
+> hibpe dementia_xsect depression_xsect if totalhccost!=0, family(gamma) link(log)
+
+Iteration 0:   log likelihood = -2965.2953  
+Iteration 1:   log likelihood = -2882.7111  
+Iteration 2:   log likelihood =  -2881.605  
+Iteration 3:   log likelihood = -2881.6015  
+Iteration 4:   log likelihood = -2881.6015  
+
+Generalized linear models                         No. of obs      =        341
+Optimization     : ML                             Residual df     =        324
+                                                  Scale parameter =   4.685533
+Deviance         =  662.5342678                   (1/df) Deviance =   2.044859
+Pearson          =   1518.11265                   (1/df) Pearson  =   4.685533
+
+Variance function: V(u) = u^2                     [Gamma]
+Link function    : g(u) = ln(u)                   [Log]
+
+                                                  AIC             =    17.0006
+Log likelihood   = -2881.601543                   BIC             =  -1226.996
+
+----------------------------------------------------------------------------------
+                 |                 OIM
+     totalhccost |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-----------------+----------------------------------------------------------------
+          female |   .4002016    .303266     1.32   0.187    -.1941888     .994592
+             age |   .0284762   .0176365     1.61   0.106    -.0060908    .0630431
+           malay |   .0936245   .3228798     0.29   0.772    -.5392082    .7264572
+          indian |  -.0462625   .3078122    -0.15   0.881    -.6495633    .5570384
+       eth_other |  -.3388424    .781917    -0.43   0.665    -1.871371    1.193687
+         msingle |   .3496049   .7468956     0.47   0.640    -1.114283    1.813493
+    mdiv_sep_wid |  -.0821399   .2999889    -0.27   0.784    -.6701072    .5058275
+       eduLowEdu |    .308288   .3613568     0.85   0.394    -.3999582    1.016534
+       eduMidEdu |    .400382   .4447217     0.90   0.368    -.4712565    1.272021
+      eduHighEdu |   .5777029   .6430997     0.90   0.369    -.6827493    1.838155
+           diabe |   .5815409   .2672791     2.18   0.030     .0576835    1.105398
+          hearte |   1.016187   .3374642     3.01   0.003     .3547691    1.677604
+          stroke |   .1624558   .5142735     0.32   0.752    -.8455018    1.170413
+           hibpe |    .351976   .3060018     1.15   0.250    -.2477766    .9517286
+  dementia_xsect |   .7321697    .436899     1.68   0.094    -.1241367    1.588476
+depression_xsect |   .9824729   .5614345     1.75   0.080    -.1179184    2.082864
+           _cons |   4.063063    1.43165     2.84   0.005     1.257081    6.869045
+----------------------------------------------------------------------------------
+
+. eststo margin: margins, dydx(*) asobserved post 
+
+Average marginal effects                        Number of obs     =        341
+Model VCE    : OIM
+
+Expression   : Predicted mean totalhccost, predict()
+dy/dx w.r.t. : female age malay indian eth_other msingle mdiv_sep_wid eduLowEdu eduMidEdu eduHighEdu diabe hearte stroke
+               hibpe dementia_xsect depression_xsect
+
+----------------------------------------------------------------------------------
+                 |            Delta-method
+                 |      dy/dx   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-----------------+----------------------------------------------------------------
+          female |   952.2997   760.9972     1.25   0.211    -539.2273    2443.827
+             age |   67.76046   45.69483     1.48   0.138    -21.79977    157.3207
+           malay |   222.7842   770.9376     0.29   0.773    -1288.226    1733.794
+          indian |  -110.0838   735.5933    -0.15   0.881     -1551.82    1331.653
+       eth_other |  -806.2924   1872.202    -0.43   0.667    -4475.741    2863.157
+         msingle |   831.9024   1788.974     0.47   0.642    -2674.422    4338.227
+    mdiv_sep_wid |  -195.4559    714.032    -0.27   0.784    -1594.933    1204.021
+       eduLowEdu |   733.5867   887.7271     0.83   0.409    -1006.326      2473.5
+       eduMidEdu |   952.7289   1091.389     0.87   0.383    -1186.354    3091.812
+      eduHighEdu |   1374.673   1572.396     0.87   0.382    -1707.167    4456.513
+           diabe |   1383.806   723.2125     1.91   0.056    -33.66479    2801.276
+          hearte |   2418.067   1076.151     2.25   0.025     308.8492    4527.285
+          stroke |   386.5716   1234.815     0.31   0.754    -2033.621    2806.765
+           hibpe |   837.5445   757.8778     1.11   0.269    -647.8687    2322.958
+  dementia_xsect |   1742.234   1139.364     1.53   0.126    -490.8779    3975.346
+depression_xsect |   2337.843   1534.632     1.52   0.128    -669.9808    5345.667
+----------------------------------------------------------------------------------
+
+. 
+. probit primaryhccost female age75p_cat malay indian msingle mdiv_sep_wid eduHighEdu diabe hibpe
+
+Iteration 0:   log likelihood = -330.58312  
+Iteration 1:   log likelihood = -325.66524  
+Iteration 2:   log likelihood =  -325.6628  
+Iteration 3:   log likelihood =  -325.6628  
+
+Probit regression                               Number of obs     =        486
+                                                LR chi2(9)        =       9.84
+                                                Prob > chi2       =     0.3635
+Log likelihood =  -325.6628                     Pseudo R2         =     0.0149
+
+-------------------------------------------------------------------------------
+primaryhccost |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+       female |   .0703819   .1293679     0.54   0.586    -.1831745    .3239382
+   age75p_cat |  -.0307514   .1268557    -0.24   0.808    -.2793841    .2178812
+        malay |   -.272041   .1447957    -1.88   0.060    -.5558355    .0117534
+       indian |  -.1487139    .142062    -1.05   0.295    -.4271504    .1297226
+      msingle |  -.1390905   .3290877    -0.42   0.673    -.7840905    .5059096
+ mdiv_sep_wid |  -.2543544   .1402724    -1.81   0.070    -.5292832    .0205744
+   eduHighEdu |  -.2742789   .2053051    -1.34   0.182    -.6766695    .1281118
+        diabe |   .1981729   .1332337     1.49   0.137    -.0629604    .4593062
+        hibpe |   .0130085   .1412869     0.09   0.927    -.2639087    .2899258
+        _cons |   .3643302   .1730959     2.10   0.035     .0250685    .7035919
+-------------------------------------------------------------------------------
+
+. glm primaryhccost female age75p_cat malay indian msingle mdiv_sep_wid eduHighEdu diabe hibpe if primaryhccost!=0 & eth_oth
+> er!=1, family(gamma) link(log)
+
+Iteration 0:   log likelihood = -1945.9067  
+Iteration 1:   log likelihood = -1940.0017  
+Iteration 2:   log likelihood = -1939.9964  
+Iteration 3:   log likelihood = -1939.9964  
+
+Generalized linear models                         No. of obs      =        274
+Optimization     : ML                             Residual df     =        264
+                                                  Scale parameter =   .7995441
+Deviance         =  137.7588293                   (1/df) Deviance =   .5218137
+Pearson          =  211.0796482                   (1/df) Pearson  =   .7995441
+
+Variance function: V(u) = u^2                     [Gamma]
+Link function    : g(u) = ln(u)                   [Log]
+
+                                                  AIC             =   14.23355
+Log likelihood   = -1939.996404                   BIC             =  -1344.107
+
+-------------------------------------------------------------------------------
+              |                 OIM
+primaryhccost |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+       female |    .195675   .1228899     1.59   0.111    -.0451848    .4365348
+   age75p_cat |   .1291554   .1300149     0.99   0.321    -.1256692    .3839799
+        malay |   .0419041   .1385874     0.30   0.762    -.2297222    .3135304
+       indian |    .089138   .1316729     0.68   0.498    -.1689362    .3472122
+      msingle |   .2649923   .3293456     0.80   0.421    -.3805132    .9104978
+ mdiv_sep_wid |   .0168784   .1443137     0.12   0.907    -.2659712    .2997279
+   eduHighEdu |   .1313038   .2148257     0.61   0.541    -.2897469    .5523545
+        diabe |   .1250823   .1201393     1.04   0.298    -.1103864    .3605511
+        hibpe |   .1060232   .1355429     0.78   0.434    -.1596361    .3716825
+        _cons |   5.729024   .1620614    35.35   0.000     5.411389    6.046658
+-------------------------------------------------------------------------------
+
+. eststo margin: margins, dydx(*) asobserved post 
+
+Average marginal effects                        Number of obs     =        274
+Model VCE    : OIM
+
+Expression   : Predicted mean primaryhccost, predict()
+dy/dx w.r.t. : female age75p_cat malay indian msingle mdiv_sep_wid eduHighEdu diabe hibpe
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      female |   86.56723   54.96745     1.57   0.115    -21.16699    194.3014
+  age75p_cat |   57.13873    57.7906     0.99   0.323    -56.12876    170.4062
+       malay |   18.53851   61.33243     0.30   0.762    -101.6709    138.7479
+      indian |   39.43492   58.36539     0.68   0.499    -74.95914     153.829
+     msingle |   117.2334   146.1782     0.80   0.423    -169.2706    403.7374
+mdiv_sep_wid |   7.467041   63.84671     0.12   0.907    -117.6702    132.6043
+  eduHighEdu |   58.08921   95.18475     0.61   0.542    -128.4695    244.6479
+       diabe |   55.33681   53.41236     1.04   0.300    -49.34949    160.0231
+       hibpe |   46.90499   60.11806     0.78   0.435    -70.92425    164.7342
+------------------------------------------------------------------------------
+
+. 
